@@ -17,14 +17,15 @@ namespace ParentServer
         private const string PythonStartFile = @"Python\PythonServer.py";
         private PythonHandler pythonListener;
         private Process pythonEngineProcess;
+        private string ipChild;
         #endregion
 
         public ParentForm()
         {
             InitializeComponent();
+            textBoxMessage.Hide();
             comboBoxActions.SelectedIndex = 0;
-            DataBaseHandler.sqlQuery = "Select * From Words";
-            dataGridView1.DataSource = DataBaseHandler.ExecuteDataTable();
+            dataGridView1.DataSource = DataBaseHandler.ExecuteDataTable("Select * From Words");
             StartPythonEngine();
         }
 
@@ -42,7 +43,7 @@ namespace ParentServer
                 // Start python engine
                 pythonEngineProcess = new Process();
                 pythonEngineProcess.StartInfo.FileName = PythonEngine;
-                pythonEngineProcess.StartInfo.Arguments = PythonStartFile + " " + Properties.Settings.Default.ClientPort;
+                pythonEngineProcess.StartInfo.Arguments = PythonStartFile +" " + Properties.Settings.Default.ClientPort;
                 pythonEngineProcess.StartInfo.WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory;
            //     pythonEngineProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 pythonEngineProcess.Start();
@@ -157,11 +158,31 @@ namespace ParentServer
         {
             StopPythonEngine();
         }
-
       
         private void buttonSend_Click(object sender, EventArgs e)
         {
-            pythonListener.Send("127.0.0.1"  + "#" + comboBoxActions.SelectedItem);
+            pythonListener.Send(ipChild + "#" + comboBoxActions.SelectedItem + "#" + textBoxMessage.Text);
         }
+
+        private void listViewChilds_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewChilds.SelectedItems.Count > 0)
+            {
+                ipChild = listViewChilds.SelectedItems[0].SubItems[2].Text;
+            }
+        }
+
+        private void comboBoxActions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxActions.SelectedItem.ToString().Equals("message"))
+                textBoxMessage.Show();
+            else
+            {
+                textBoxMessage.Text = "";
+                textBoxMessage.Hide();
+            }
+        }
+
+       
     }
 }

@@ -43,6 +43,7 @@
             this.richTextBoxLog = new System.Windows.Forms.RichTextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.richTextBoxEvents = new System.Windows.Forms.RichTextBox();
+            this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -66,6 +67,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.textBoxMessage);
             this.tabPage1.Controls.Add(this.buttonSend);
             this.tabPage1.Controls.Add(this.listViewChilds);
             this.tabPage1.Controls.Add(this.label1);
@@ -80,7 +82,7 @@
             // 
             // buttonSend
             // 
-            this.buttonSend.Location = new System.Drawing.Point(489, 122);
+            this.buttonSend.Location = new System.Drawing.Point(489, 108);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(75, 23);
             this.buttonSend.TabIndex = 5;
@@ -95,13 +97,16 @@
             this.columnHeader5,
             this.columnHeader6});
             this.listViewChilds.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listViewChilds.FullRowSelect = true;
             this.listViewChilds.GridLines = true;
+            this.listViewChilds.HideSelection = false;
             this.listViewChilds.Location = new System.Drawing.Point(3, 3);
             this.listViewChilds.Name = "listViewChilds";
             this.listViewChilds.Size = new System.Drawing.Size(458, 368);
             this.listViewChilds.TabIndex = 4;
             this.listViewChilds.UseCompatibleStateImageBehavior = false;
             this.listViewChilds.View = System.Windows.Forms.View.Details;
+            this.listViewChilds.SelectedIndexChanged += new System.EventHandler(this.listViewChilds_SelectedIndexChanged);
             // 
             // columnHeader4
             // 
@@ -142,6 +147,7 @@
             this.comboBoxActions.Size = new System.Drawing.Size(138, 21);
             this.comboBoxActions.Sorted = true;
             this.comboBoxActions.TabIndex = 2;
+            this.comboBoxActions.SelectedIndexChanged += new System.EventHandler(this.comboBoxActions_SelectedIndexChanged);
             // 
             // tabPage2
             // 
@@ -149,7 +155,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(635, 376);
+            this.tabPage2.Size = new System.Drawing.Size(641, 374);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Words Manager";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -160,7 +166,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(629, 370);
+            this.dataGridView1.Size = new System.Drawing.Size(635, 368);
             this.dataGridView1.TabIndex = 0;
             // 
             // tabPage3
@@ -169,7 +175,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(635, 376);
+            this.tabPage3.Size = new System.Drawing.Size(641, 374);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Log";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -179,7 +185,7 @@
             this.richTextBoxLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBoxLog.Location = new System.Drawing.Point(3, 3);
             this.richTextBoxLog.Name = "richTextBoxLog";
-            this.richTextBoxLog.Size = new System.Drawing.Size(629, 370);
+            this.richTextBoxLog.Size = new System.Drawing.Size(635, 368);
             this.richTextBoxLog.TabIndex = 0;
             this.richTextBoxLog.Text = "";
             // 
@@ -189,7 +195,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(635, 376);
+            this.tabPage4.Size = new System.Drawing.Size(641, 374);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Events";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -199,9 +205,18 @@
             this.richTextBoxEvents.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBoxEvents.Location = new System.Drawing.Point(3, 3);
             this.richTextBoxEvents.Name = "richTextBoxEvents";
-            this.richTextBoxEvents.Size = new System.Drawing.Size(629, 370);
+            this.richTextBoxEvents.Size = new System.Drawing.Size(635, 368);
             this.richTextBoxEvents.TabIndex = 1;
             this.richTextBoxEvents.Text = "";
+            // 
+            // textBoxMessage
+            // 
+            this.textBoxMessage.Location = new System.Drawing.Point(489, 156);
+            this.textBoxMessage.Multiline = true;
+            this.textBoxMessage.Name = "textBoxMessage";
+            this.textBoxMessage.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxMessage.Size = new System.Drawing.Size(138, 170);
+            this.textBoxMessage.TabIndex = 6;
             // 
             // ParentForm
             // 
@@ -243,6 +258,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Button buttonSend;
+        private System.Windows.Forms.TextBox textBoxMessage;
 
     }
 }

@@ -1,7 +1,5 @@
 ﻿#region ----------   ABOUT   -----------------------------
-/*#################################################################
-# Created By:                                                    #
-# Date: 20/09/2014                                               #
+/*#################################################################                                            #
 # Name: Server for GUI and python engine client                  #
 # Version: 1.0                                                   #
 # Windows Tested Versions: Win 7 32-bit                          #
@@ -107,13 +105,9 @@ namespace ParentServer
                         string[] items = msg.Split('#');
                         switch (items[0])  // command
                         {
-                            case "StartChild": // Add new group
+                            case "StartChild": // Add new child
                                 mainForm.AddNewChild(items[1],items[2]);
                                 break;
-                           
-                            //case "Points": // Current level sucessfull ended
-                            //    mainForm.ViewPoints(items[1], items[2]);
-                            //    break;
                             case "Close":
                                 mainForm.StopPythonEngine();
                                 break;

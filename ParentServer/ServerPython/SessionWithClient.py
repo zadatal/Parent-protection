@@ -1,8 +1,6 @@
 #region ----------   ABOUT   -----------------------------
 """
-##################################################################
-# Created By:  Tal Zade                                          #
-# Date: 20/09/2014                                               #
+##################################################################                                             #
 # Name: Server  between GUI and clients                          #
 # Version: 1.0                                                   #
 # Windows Tested Versions: Win 7 32-bit                          #
@@ -79,25 +77,22 @@ class  SessionWithClient(threading.Thread):
                 return False
             return True
         return False
-
-    def start_session(self):
-        # Wait message beginning of communication from client
-        data = self.recv_buf()
-        if not self.verify_hello(data) :
-                return
-        self.clientSock.send(PROT_START + END_LINE)
-        # Wait name of child
-        name = self.recv_buf()
-        self.pythonServer.gui.guiSock.send("StartChild#" +  name + "#" + self.addr[0]  + "#")   # to GUI
-        #self.security.key_exchange(self.clientSock)   #  in Security
-
   
     #-----------------------------------------------------------------------------------------------
     # the main function of the THREAD sessionWithClient class  
     #-----------------------------------------------------------------------------------------------  
     def run(self):
-        try:     
-            self.start_session()            
+        try:               
+            # Wait message beginning of communication from client
+            data = self.recv_buf()
+            if not self.verify_hello(data) :
+                return
+            self.clientSock.send(PROT_START + END_LINE)
+            # Wait name of child
+            name = self.recv_buf()
+            self.pythonServer.gui.guiSock.send("StartChild#" +  name + "#" + self.addr[0]  + "#")   # to GUI
+
+            #self.security.key_exchange(self.clientSock)   #  in Security
 
             while True:
                 pass
@@ -109,6 +104,13 @@ class  SessionWithClient(threading.Thread):
         except Exception as e:
             print str(e) + END_LINE + ERROR_EXCEPT + "  from " + str(self.addr[0])     
 
+    #-----------------------------------------------------------------------------------------------
+    #  Operation  1   ---    
+    #
+    # Description: 
+    #-----------------------------------------------------------------------------------------------
+    def oper1Fun(self):
+       pass   
            
   #endregion   
 

@@ -6,3 +6,11 @@ C:\Users\34v7\ParentServer\ParentServer\obj\x86\Debug\ParentServer.csproj.Genera
 C:\Users\34v7\ParentServer\ParentServer\obj\x86\Debug\ParentServer.exe
 C:\Users\34v7\ParentServer\ParentServer\obj\x86\Debug\ParentServer.pdb
 C:\Users\34v7\ParentServer\ParentServer\bin\Debug\ParentServer.exe.config
+D:\users\190\Documents\GitHub\Parent-protection\ParentServer\ParentServer\bin\Debug\ParentServer.exe.config
+D:\users\190\Documents\GitHub\Parent-protection\ParentServer\ParentServer\obj\x86\Debug\ParentServer.exe
+D:\users\190\Documents\GitHub\Parent-protection\ParentServer\ParentServer\obj\x86\Debug\ParentServer.pdb
+D:\users\190\Documents\GitHub\Parent-protection\ParentServer\ParentServer\bin\Debug\ParentServer.exe
+D:\users\190\Documents\GitHub\Parent-protection\ParentServer\ParentServer\bin\Debug\ParentServer.pdb
+D:\users\190\Documents\GitHub\Parent-protection\ParentServer\ParentServer\obj\x86\Debug\ParentServer.ParentForm.resources
+D:\users\190\Documents\GitHub\Parent-protection\ParentServer\ParentServer\obj\x86\Debug\ParentServer.Properties.Resources.resources
+D:\users\190\Documents\GitHub\Parent-protection\ParentServer\ParentServer\obj\x86\Debug\ParentServer.csproj.GenerateResource.Cache

@@ -11,8 +11,6 @@ namespace ParentServer
 {
     class DataBaseHandler
     {
-        public static string sqlQuery;
-
 
         public static OleDbConnection ConnectToDb()
         {
@@ -22,7 +20,7 @@ namespace ParentServer
             return conn;
         }
 
-        public static void DoQuery()
+        public static void DoQuery(string sqlQuery)
         //הפעולה מקבלת שם מסד נתונים ומחרוזת מחיקה/ הוספה/ עדכון
         //ומבצעת את הפקודה על המסד הפיזי
         {
@@ -38,7 +36,7 @@ namespace ParentServer
         /// To Execute update / insert / delete queries
         ///  הפעולה מקבלת שם קובץ ומשפט לביצוע ומחזירה את מספר השורות שהושפעו מביצוע הפעולה
         /// </summary>
-        public static int RowsAffected()//הפעולה מקבלת מסלול מסד נתונים ופקודת עדכון
+        public static int RowsAffected(string sqlQuery)//הפעולה מקבלת מסלול מסד נתונים ופקודת עדכון
         //ומבצעת את הפקודה על המסד הפיזי
         {
 
@@ -53,7 +51,7 @@ namespace ParentServer
         /// <summary>
         /// הפעולה מקבלת שם קובץ ומשפט לחיפוש ערך - מחזירה אמת אם הערך נמצא ושקר אחרת
         /// </summary>
-        public static bool IsExist()//הפעולה מקבלת שם קובץ ומשפט בחירת נתון ומחזירה אמת אם הנתונים קיימים ושקר אחרת
+        public static bool IsExist(string sqlQuery)//הפעולה מקבלת שם קובץ ומשפט בחירת נתון ומחזירה אמת אם הנתונים קיימים ושקר אחרת
         {
 
             OleDbConnection conn = ConnectToDb();
@@ -67,8 +65,7 @@ namespace ParentServer
 
         }
 
-
-        public static DataTable ExecuteDataTable()
+        public static DataTable ExecuteDataTable(string sqlQuery)
         {
             OleDbConnection conn = ConnectToDb();
             conn.Open();
@@ -78,7 +75,7 @@ namespace ParentServer
             return dt;
         }
 
-        public static void ExecuteNonQuery()
+        public static void ExecuteNonQuery(string sqlQuery)
         {
             OleDbConnection conn = ConnectToDb();
             conn.Open();
@@ -87,7 +84,7 @@ namespace ParentServer
             conn.Close();
         }
 
-        public static int ExecuteScalar()//פונקציה למציאת הID הקטן ביותר במסד והחזרתו
+        public static int ExecuteScalar(string sqlQuery)//פונקציה למציאת הID הקטן ביותר במסד והחזרתו
         {
             OleDbConnection conn = ConnectToDb();
             conn.Open();

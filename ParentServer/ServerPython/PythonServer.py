@@ -1,8 +1,6 @@
 #region ----------   ABOUT   -----------------------------
 """
-##################################################################
-# Created By:  Tal Zade                                          #
-# Date: 20/09/2014                                               #
+##################################################################                                        #
 # Name: Server  between GUI and clients                          #
 # Version: 1.0                                                   #
 # Windows Tested Versions: Win 7 32-bit                          #
@@ -94,11 +92,12 @@ class  Gui(threading.Thread):
             data = self.guiSock.recv(1024)
             if len(data) > 0 :
                 fields = data.split('#')
-                #                                IP                       OPERATION         DATA 
-                self.pythonServer.open_clients[fields[0]].clientSock.send(fields[1] + '#' + fields[2])
+                #                                IP                       OPERATION
+                self.pythonServer.open_clients[fields[0]].clientSock.send(fields[1])
                  
 #endregion
 #endregion
+
 
 #region ----------   MAIN   -----------------------------
 
@@ -127,14 +126,15 @@ def main(args):
         gui.pythonServer = PythonServer(gui, int(args[0])) 
         gui.pythonServer.start() 
     except socket.error , e:
-            print e    
+            print e
+    
+
 
 if __name__ == "__main__":
     if len(sys.argv) == 2:
         main(sys.argv[1:])
     else:
         print "Usage: %s <clientPort> " % sys.argv[0]
-        raw_input()
 
 #endregion
 

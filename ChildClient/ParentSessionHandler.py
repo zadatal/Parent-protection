@@ -1,6 +1,7 @@
 #region ------ I M P O R T S --------------
 
 from socket import *
+import errno
 import  threading
 from OperationsHandler import *
 
@@ -10,7 +11,7 @@ from OperationsHandler import *
 #region ------ C O N S T A N T S --------------
 
 PARENT_PORT = 2000
-PARENT_HOST = "127.0.0.1"
+PARENT_HOST = "192.168.2.21"  # "127.0.0.1"
 PROT_START = "Hello"                                      # Initialization keyword of Protocol Establishment
 LEN_UNIT_BUF = 2048                                       # Min len of buffer for receive from server socket
 GOOD_RESPONSE = "OK"
@@ -27,7 +28,8 @@ class ParentSessionHandler(threading.Thread):
 
     def __init__(self):
         self.parent_sock = socket()
-        #threading.Thread.__init__();
+        daemon = True
+        threading.Thread.__init__(self)
 
 
     #-----------------------------------------------------------------------------------------------
@@ -64,26 +66,37 @@ class ParentSessionHandler(threading.Thread):
     def run(self):
 
         print "Wait connection..."
+        try:
+            while True:
+                try:
+                    self.parent_sock.connect((PARENT_HOST, PARENT_PORT))
+                    break
+                except:
+                    continue
+
+            print "Connected to server..."
+            self.parent_sock.send(PROT_START + END_LINE)
+            # Wait message beginning of communication from client
+            data = self.recv_buf()
+            if not self.verify_hello(data) :
+                return
+
+            self.parent_sock.send("Tal" + END_LINE)
+
+            self.operation()
+
+        except error, v:
+            errorcode=v[0]
+            if errorcode == errno.ECONNRESET:
+                print 'An existing connection was forcibly closed by the remote server'
+            exit(errorcode)
+
+
+    def operation(self):
         while True:
-            try:
-                self.parent_sock.connect((PARENT_HOST, PARENT_PORT))
-                break
-            except:
-                continue
-
-        print "Connected to server..."
-        self.parent_sock.send(PROT_START + END_LINE)
-        # Wait message beginning of communication from client
-        data = self.recv_buf()
-        if not self.verify_hello(data) :
-            return
-
-        self.parent_sock.send("Tal" + END_LINE)
-
-
-        while True:
-            oper =  self.parent_sock.recv(1024)
-            print oper
+            fromParent =  self.parent_sock.recv(1024)
+            items = fromParent.split('#')
+            oper = items[0]
             if (oper=="mouse" or oper == "closeinter" or oper == "key" ):
                 sec = self.parent_sock.recv(1024)
                 print sec
@@ -91,7 +104,7 @@ class ParentSessionHandler(threading.Thread):
                     if i == oper:
                         self.operationsHandler.operations_dict[i](sec)
             elif oper == "message":
-                message = self.parent_sock.recv(1024)
+                message = items[1]
                 for i in self.operationsHandler.operations_dict:
                     if i == oper:
                         self.operationsHandler.operations_dict[i](message)
