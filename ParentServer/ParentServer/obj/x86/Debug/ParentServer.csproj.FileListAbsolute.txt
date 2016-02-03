@@ -1,0 +1,8 @@
+C:\Users\34v7\ParentServer\ParentServer\bin\Debug\ParentServer.exe
+C:\Users\34v7\ParentServer\ParentServer\bin\Debug\ParentServer.pdb
+C:\Users\34v7\ParentServer\ParentServer\obj\x86\Debug\ParentServer.ParentForm.resources
+C:\Users\34v7\ParentServer\ParentServer\obj\x86\Debug\ParentServer.Properties.Resources.resources
+C:\Users\34v7\ParentServer\ParentServer\obj\x86\Debug\ParentServer.csproj.GenerateResource.Cache
+C:\Users\34v7\ParentServer\ParentServer\obj\x86\Debug\ParentServer.exe
+C:\Users\34v7\ParentServer\ParentServer\obj\x86\Debug\ParentServer.pdb
+C:\Users\34v7\ParentServer\ParentServer\bin\Debug\ParentServer.exe.config
